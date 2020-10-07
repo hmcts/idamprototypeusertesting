@@ -45,7 +45,7 @@
 
 
 
-          <button class="govuk-button govuk-!-margin-top-7" data-module="govuk-button">
+          <button class="govuk-button govuk-!-margin-top-7" data-module="govuk-button"  onclick="openemail()">
             Sign in
           </button>
 
@@ -62,4 +62,17 @@
     </div>
   </div>
 
+
+<script>
+
+  function openemail()
+  {
+      window.open('emailcode', '_blank');
+  }
+
+</script>
+
+
 {% endblock %}
+
+

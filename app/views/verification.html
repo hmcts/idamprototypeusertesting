@@ -49,15 +49,15 @@
               {% endif %}
 
                       <label class="govuk-label" for="code">
-                        Enter verification code
+                        Enter code
                       </label>
                       {% if data.errorcode == 'true' %}
                           <span id="national-insurance-number-error" class="govuk-error-message">
                               <span class="govuk-visually-hidden">Error:</span> Enter a correct verification code
                           </span>
-                          <input class="govuk-input  govuk-input--error" id="code" name="code" type="text" style="width:120px">
+                          <input class="govuk-input  govuk-input--error" id="code" name="code" type="text" style="width:120px"  value="{{ data.code }}">
                       {% else %}
-                          <input class="govuk-input" id="code" name="code" type="text" style="width:120px">
+                          <input class="govuk-input" id="code" name="code" type="text" style="width:120px" value="{{ data.code }}">
                       {% endif %}
 
                   </div>
@@ -65,7 +65,7 @@
             </fieldset>
 
             <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
-              Sign in
+              Continue
             </button>
 
           </div>
