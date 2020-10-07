@@ -42,13 +42,38 @@
   {# Set serviceName in config.js. #}
   {{ govukHeader({
     homepageUrl: "/",
-    serviceName: serviceName,
+    serviceName: "",
     serviceUrl: "/",
     containerClasses: "govuk-width-container"
   }) }}
+
+
+<div style="max-width: 960px; margin: auto">
+  <div class="govuk-phase-banner">
+
+    <div style="display: flex; flex-direction: row; align-content: space-between; ">
+      <div style="">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            beta
+          </strong>
+            <span class="govuk-phase-banner__text">
+              This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+            </span>
+        </p>
+      </div>
+      <div style="flex: 1; display: flex; justify-content: flex-end;">
+        <p class="govuk-phase-banner__content" ><a href="#">Cymraeg</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 {% endblock %}
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
+
 
 {% if useAutoStoreData %}
   {% block footer %}
