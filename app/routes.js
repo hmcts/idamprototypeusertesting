@@ -8,8 +8,8 @@ module.exports = router
 
 router.post( '/signin', function (req, res)
 {
-    req.session.data['errorcounter'] == '0';
-    req.session.data['code'] == '';
+    req.session.data['errorcounter'] = '0';
+    req.session.data['code'] = '';
     res.redirect('/verification?errorcode=false&');
 })
 
