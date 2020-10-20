@@ -11,6 +11,34 @@
   <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-one-half">
+
+        {% if data.errorsignin == 'true' %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    {% if data.erroremail == 'true' %}
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li>
+                                <a href="#emailarea">Email error placeholder</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                    {% if data.errorpassword == 'true' %}
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li>
+                                <a href="#passwordarea">Password error placeholder</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+
+                </div>
+            </div>
+        {% endif %}
+
+
+
       <h1 class="govuk-heading-l" style="">
           Sign in to HMCTS
       </h1>
@@ -24,41 +52,68 @@
 
           <div class="govuk-form-group">
 
-            <fieldset class="govuk-fieldset">
+                <fieldset class="govuk-fieldset">
 
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="email">
-                  Email address
-                </label>
-                <input class="govuk-input govuk-\!-width-one-half" id="email" name="email" type="text">
-              </div>
+                    {% if data.erroremail == 'true' %}
+                        <div class="govuk-form-group  govuk-form-group--error" id="emailarea">
+                    {% else %}
+                        <div class="govuk-form-group" id="emailarea">
+                    {% endif %}
+                        <label class="govuk-label" for="email">
+                          Email address
+                        </label>
 
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="password">
-                  Password
-                </label>
-                <input class="govuk-input govuk-input--width-10" id="password" name="password" type="password">
-
-              </div>
-            </fieldset>
-
-
-
-          <button class="govuk-button govuk-!-margin-top-7" data-module="govuk-button"  onclick="openemail()">
-            Sign in
-          </button>
+                        {% if data.erroremail == 'true' %}
+                            <span id="" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span> Enter a correct email address
+                            </span>
+                            <input class="govuk-input  govuk-input--error govuk-\!-width-one-half" id="email" name="email" type="text"  value="{{ data.email }}">
+                        {% else %}
+                            <input class="govuk-input govuk-\!-width-one-half" id="email" name="email" type="text"  value="{{ data.email }}">
+                        {% endif %}
+                    </div>
 
 
-          <!--<h2 class="govuk-heading-s govuk-!-margin-top-3 govuk-!-margin-bottom-1">Problems signing in</h2>-->
-          <p class="govuk-body  govuk-!-margin-bottom-1"><a href="##">Forgotten password</a></p>
+                    {% if data.errorpassword == 'true' %}
+                        <div class="govuk-form-group  govuk-form-group--error" id="passwordarea">
+                    {% else %}
+                        <div class="govuk-form-group" id="passwordarea">
+                    {% endif %}
+                        <label class="govuk-label" for="password">
+                            Password
+                        </label>
 
-          <br>
-          <h3 class="govuk-heading-m">If you don't have an account</h3>
-          <p>You need to <a href="/users/selfRegister?redirect_uri=https%3a%2f%2fwww.apply-divorce.service.gov.uk%2fauthenticated&amp;client_id=divorce&amp;state=5a66eaab-6261-4463-94bf-c0e2a1cbc171&amp;scope=">
-              create an account</a>
-              to use this service.
-          </p>
+                        {% if data.errorpassword == 'true' %}
+                            <span id="" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span> Enter a correct password
+                            </span>
+                            <input class="govuk-input  govuk-input--error  govuk-input--width-10" id="password" name="password" type="password"  value="{{ data.password }}">
+                        {% else %}
+                            <input class="govuk-input govuk-input--width-10" id="password" name="password" type="password"  value="{{ data.password }}">
+                        {% endif %}
+                    </div>
 
+                  </div>
+                </fieldset>
+
+
+
+                <button class="govuk-button govuk-!-margin-top-1" data-module="govuk-button"  onclick="">
+                    Sign in
+                </button>
+
+
+                <!--<h2 class="govuk-heading-s govuk-!-margin-top-3 govuk-!-margin-bottom-1">Problems signing in</h2>-->
+                <p class="govuk-body  govuk-!-margin-bottom-1"><a href="##">Forgotten password</a></p>
+
+                {% if data.createaccountshowing == 'true' %}
+                    <br>
+                    <h3 class="govuk-heading-m">If you don't have an account</h3>
+                    <p>You need to <a href="/users/selfRegister?redirect_uri=https%3a%2f%2fwww.apply-divorce.service.gov.uk%2fauthenticated&amp;client_id=divorce&amp;state=5a66eaab-6261-4463-94bf-c0e2a1cbc171&amp;scope=">
+                      create an account</a>
+                      to use this service.
+                    </p>
+                {% endif %}
 
           </div>
       </form>
@@ -66,6 +121,33 @@
 
     </div>
   </div>
+
+
+
+
+<form method="post"  action="#" class="for4" style=" float: left; margin-top: 50px;">
+    <select style="height:25px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorsignin=false&erroremail=false&errorpassword=false&"
+                {% if data.errorsignin == 'false' and  data.erroremail == 'false'  and  data.errorpassword == 'false' %}selected{% endif %}
+        >Default</option>
+
+        <option value="errorsignin=true&erroremail=true&errorpassword=true&"
+                {% if data.errorsignin == 'true' and  data.erroremail == 'true'  and  data.errorpassword == 'true' %}selected{% endif %}
+        >Email and password error</option>
+
+        <option value="errorsignin=true&erroremail=true&errorpassword=false&"
+                {% if data.errorsignin == 'true' and  data.erroremail == 'true'  and  data.errorpassword == 'false' %}selected{% endif %}
+        >Email error only</option>
+
+        <option value="errorsignin=true&erroremail=false&errorpassword=true&"
+                {% if data.errorsignin == 'true' and  data.erroremail == 'false'  and  data.errorpassword == 'true' %}selected{% endif %}
+        >Password error only</option>
+
+    </select>
+</form>
+
+
 
 
 <script>

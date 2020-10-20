@@ -6,17 +6,20 @@ const router = express.Router()
 module.exports = router
 
 
-router.post( '/signin', function (req, res)
+router.get( '/signinstart', function (req, res)
 {
-    req.session.data['errorcounter'] = '0';
-    req.session.data['code'] = '';
-    res.redirect('/verification?errorcode=false&');
+    res.redirect('/signincreateaccount?errorsignin=false&erroremail=false&errorpassword=false&createaccountshowing=false&email=&password=&');
+})
+
+
+router.get( '/signincreateaccountstart', function (req, res)
+{
+    res.redirect('/signincreateaccount?errorsignin=false&erroremail=false&errorpassword=false&createaccountshowing=true&false&email=&password=&');
 })
 
 
 router.post( '/signincreateaccount', function (req, res)
 {
-    var error = false;
     var emailerror = false;
     var passworderror = false;
 
@@ -34,21 +37,26 @@ router.post( '/signincreateaccount', function (req, res)
 
     if(emailerror && passworderror)
     {
-        res.redirect('/signincreateaccount?erroremail=true&errorpassword=true&');
+        res.redirect('/signincreateaccount?errorsignin=true&erroremail=true&errorpassword=true&');
     }
     else if(emailerror)
     {
-        res.redirect('/signincreateaccount?erroremail=true&');
+        res.redirect('/signincreateaccount?errorsignin=true&erroremail=true&errorpassword=false&');
     }
     else if(passworderror)
     {
-        res.redirect('/signincreateaccount?errorpassword=true&');
+        res.redirect('/signincreateaccount?errorsignin=true&erroremail=false&errorpassword=true&');
     }
     else
     {
-        res.redirect('/verification?errorcode=false&');
-    }
+        req.session.data['errorsignin'] = false;
+        req.session.data['erroremail'] = false;
+        req.session.data['errorpassword'] = false;
+        req.session.data['errorcounter'] = '0';
+        req.session.data['code'] = '';
 
+        res.redirect('/verification?');
+    }
 
 })
 
