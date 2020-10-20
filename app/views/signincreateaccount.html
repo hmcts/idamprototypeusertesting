@@ -45,6 +45,7 @@
 
 
       <form
+              action="submitsignin"
               name="aspnetForm"
               method="post"
               id="aspnetForm"
@@ -64,7 +65,7 @@
                         </label>
 
                         {% if data.erroremail == 'true' %}
-                            <span id="" class="govuk-error-message">
+                            <span id="emailerrorsection" class="govuk-error-message">
                                 <span class="govuk-visually-hidden">Error:</span> Enter a correct email address
                             </span>
                             <input class="govuk-input  govuk-input--error govuk-\!-width-one-half" id="email" name="email" type="text"  value="{{ data.email }}">
@@ -84,7 +85,7 @@
                         </label>
 
                         {% if data.errorpassword == 'true' %}
-                            <span id="" class="govuk-error-message">
+                            <span id="passworderrorsection" class="govuk-error-message">
                                 <span class="govuk-visually-hidden">Error:</span> Enter a correct password
                             </span>
                             <input class="govuk-input  govuk-input--error  govuk-input--width-10" id="password" name="password" type="password"  value="{{ data.password }}">
@@ -95,7 +96,6 @@
 
                   </div>
                 </fieldset>
-
 
 
                 <button class="govuk-button govuk-!-margin-top-1" data-module="govuk-button"  onclick="">

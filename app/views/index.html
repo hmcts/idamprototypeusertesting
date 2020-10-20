@@ -21,8 +21,14 @@ GOV.UK Prototype Kit
     <p><a href="emailcode" target="_blank" >Email</a></p>
 
     <p><a href="verification?errorcode=false&errorcounter=0&" target="_blank" >Security code</a></p>
-    <p><a href="verification?errorcode=true&errorcounter=0&" target="_blank" >Security code - eempty or wrong code</a></p>
-    <p><a href="failedverification?" target="_blank" >Code timeout or 3 entry limit</a></p>
+
+    <br>
+    <h3 class="govuk-heading-s">Error States</h3>
+    <p><a href="signincreateaccount?errorsignin=true&erroremail=true&errorpassword=true&" target="_blank" >Sign in - wrong or empty email and password</a></p>
+    <p><a href="signincreateaccount?errorsignin=true&erroremail=true&errorpassword=false&" target="_blank" >Sign in - wrong or empty email only</a></p>
+    <p><a href="signincreateaccount?errorsignin=true&erroremail=false&errorpassword=true&" target="_blank" >Sign in - wrong or empty password only</a></p>
+    <p><a href="verification?errorcode=true&errorcounter=0&" target="_blank" >Security code - empty or wrong code</a></p>
+    <p><a href="failedverification?" target="_blank" >Security code - Code timeout or 3 entry limit</a></p>
 
   </div>
 </div>

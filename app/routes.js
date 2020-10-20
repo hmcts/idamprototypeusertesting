@@ -18,10 +18,18 @@ router.get( '/signincreateaccountstart', function (req, res)
 })
 
 
-router.post( '/signincreateaccount', function (req, res)
+router.post( '/submitsignin', function (req, res)
 {
+    console.log("EMAIL UP FRONT 1st:" + req.session.data['email']);
+
     var emailerror = false;
     var passworderror = false;
+
+    console.log("EMAIL UP FRONT:" + req.session.data['email']);
+
+    var tempemail =  req.session.data['email'];
+    var temppassword =  req.session.data['password'];
+
 
     // Check email contains correct symbols
     if( req.session.data['email'].includes("@") == false )
@@ -34,6 +42,13 @@ router.post( '/signincreateaccount', function (req, res)
     {
         passworderror = true;
     }
+
+    // reassigned the data that was entered
+    req.session.data['email'] = tempemail;
+    req.session.data['password'] = temppassword;
+
+    console.log("EMAIL " + req.session.data['email']);
+
 
     if(emailerror && passworderror)
     {
@@ -61,7 +76,7 @@ router.post( '/signincreateaccount', function (req, res)
 })
 
 
-router.post( '/verification', function (req, res)
+router.post( '/submitverificationcode', function (req, res)
 {
     if(req.session.data['code'] == '12345678' )
     {
