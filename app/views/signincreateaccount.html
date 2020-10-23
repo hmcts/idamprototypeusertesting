@@ -21,14 +21,14 @@
                     {% if data.erroremail == 'true' %}
                         <ul class="govuk-list govuk-error-summary__list">
                             <li>
-                                <a href="#emailarea">Email error placeholder</a>
+                                <a href="#emailarea">Enter a correct email address</a>
                             </li>
                         </ul>
                     {% endif %}
                     {% if data.errorpassword == 'true' %}
                         <ul class="govuk-list govuk-error-summary__list">
                             <li>
-                                <a href="#passwordarea">Password error placeholder</a>
+                                <a href="#passwordarea">Enter a correct password</a>
                             </li>
                         </ul>
                     {% endif %}
@@ -104,15 +104,13 @@
 
 
                 <!--<h2 class="govuk-heading-s govuk-!-margin-top-3 govuk-!-margin-bottom-1">Problems signing in</h2>-->
-                <p class="govuk-body  govuk-!-margin-bottom-1"><a href="##">Forgotten password</a></p>
+                <p class="govuk-body  govuk-!-margin-bottom-1"><a href="##">Forgotten password</a>
+                <br><a href="##">eJudiciary sign in</a></p>
 
                 {% if data.createaccountshowing == 'true' %}
                     <br>
                     <h3 class="govuk-heading-m">If you don't have an account</h3>
-                    <p>You need to <a href="/users/selfRegister?redirect_uri=https%3a%2f%2fwww.apply-divorce.service.gov.uk%2fauthenticated&amp;client_id=divorce&amp;state=5a66eaab-6261-4463-94bf-c0e2a1cbc171&amp;scope=">
-                      create an account</a>
-                      to use this service.
-                    </p>
+                    <p>You need to <a href="createaccountsignin">create an account</a> to use this service.</p>
                 {% endif %}
 
           </div>

@@ -1,0 +1,187 @@
+{% extends "layoutnewfooter.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-half">
+
+        {% if data.errorsignin == 'true' %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    {% if data.errorfirstname == 'true' %}
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li>
+                                <a href="#firstnamearea">Email error placeholder</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                    {% if data.errorlastname == 'true' %}
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li>
+                                <a href="#lastnamearea">Password error placeholder</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                    {% if data.erroremailaddress == 'true' %}
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li>
+                                <a href="#lastnamearea">Email address error placeholder</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+
+
+      <h1 class="govuk-heading-l" style="">
+          Sign in to HMCTS
+      </h1>
+
+
+      <form
+              action="createaccount"
+              name="aspnetForm"
+              method="post"
+              id="aspnetForm"
+              autocomplete="off">
+
+          <div class="govuk-form-group">
+
+              <fieldset class="govuk-fieldset">
+
+                  {% if data.errorfirstname == 'true' %}
+                      <div class="govuk-form-group  govuk-form-group--error" id="firstnamearea">
+                  {% else %}
+                      <div class="govuk-form-group" id="firstnamearea">
+                  {% endif %}
+                      <label class="govuk-label" for="firstname">
+                          First name
+                      </label>
+
+                      {% if data.errorfirstname == 'true' %}
+                            <span id="firstnamesection" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span> Enter a first name
+                            </span>
+                            <input class="govuk-input  govuk-input--error govuk-\!-width-one-half" id="firstname" name="email" type="text"  value="{{ data.email }}">
+                      {% else %}
+                            <input class="govuk-input govuk-\!-width-one-half" id="firstname" name="email" type="text"  value="{{ data.email }}">
+                      {% endif %}
+                  </div>
+
+
+                      {% if data.errorlastname == 'true' %}
+                          <div class="govuk-form-group  govuk-form-group--error" id="lastnamearea">
+                      {% else %}
+                          <div class="govuk-form-group" id="lastnamearea">
+                      {% endif %}
+                          <label class="govuk-label" for="lastname">
+                              Last name
+                          </label>
+
+                          {% if data.errorlastname == 'true' %}
+                                <span id="lastnamesection" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span> Enter a last name
+                                </span>
+                                <input class="govuk-input  govuk-input--error govuk-\!-width-one-half" id="lastname" name="email" type="text"  value="{{ data.email }}">
+                          {% else %}
+                                <input class="govuk-input govuk-\!-width-one-half" id="lastname" name="email" type="text"  value="{{ data.email }}">
+                          {% endif %}
+                      </div>
+
+
+                      {% if data.erroremailaddress == 'true' %}
+                          <div class="govuk-form-group  govuk-form-group--error" id="emailaddressarea">
+                      {% else %}
+                          <div class="govuk-form-group" id="emailaddressdarea">
+                      {% endif %}
+                          <label class="govuk-label" for="emailaddress">
+                              Password
+                          </label>
+
+
+                      {% if data.erroremailaddress == 'true' %}
+                          <span id="passworderrorsection" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span> Enter a correct email address
+                          </span>
+                          <input class="govuk-input  govuk-input--error  govuk-input--width-10" id="emailaddress" name="password" type="password"  value="{{ data.emailaddress }}">
+                      {% else %}
+                          <input class="govuk-input govuk-input--width-10" id="emailaddress" name="password" type="password"  value="{{ data.emailaddress }}">
+                      {% endif %}
+                      </div>
+
+                </fieldset>
+
+
+                <p class="govuk-body  govuk-!-margin-top-5">Read our
+                    <a href="https://hmcts-access.service.gov.uk/privacy-policy">Privacy policy</a> and
+                    <a href="https://hmcts-access.service.gov.uk/terms-and-conditions">terms and conditions</a>.</p>
+
+
+                <button class="govuk-button govuk-!-margin-top-1" data-module="govuk-button"  onclick="">
+                    Continue
+                </button>
+
+                <br>
+                <h3 class="govuk-heading-m">If you have an account</h3>
+                <p><a href="signincreateaccount">Sign in</a></p>
+
+          </div>
+      </form>
+
+
+    </div>
+  </div>
+
+
+
+
+<form method="post"  action="#" class="for4" style=" float: left; margin-top: 50px;">
+    <select style="height:25px;" onchange="window.location.href='?'+this.value">
+
+        <option value="errorsignin=false&erroremail=false&errorpassword=false&"
+                {% if data.errorsignin == 'false' and  data.erroremail == 'false'  and  data.errorpassword == 'false' %}selected{% endif %}
+        >Default</option>
+
+        <option value="errorsignin=true&erroremail=true&errorpassword=true&"
+                {% if data.errorsignin == 'true' and  data.erroremail == 'true'  and  data.errorpassword == 'true' %}selected{% endif %}
+        >Email and password error</option>
+
+        <option value="errorsignin=true&erroremail=true&errorpassword=false&"
+                {% if data.errorsignin == 'true' and  data.erroremail == 'true'  and  data.errorpassword == 'false' %}selected{% endif %}
+        >Email error only</option>
+
+        <option value="errorsignin=true&erroremail=false&errorpassword=true&"
+                {% if data.errorsignin == 'true' and  data.erroremail == 'false'  and  data.errorpassword == 'true' %}selected{% endif %}
+        >Password error only</option>
+
+    </select>
+</form>
+
+
+
+
+<script>
+
+  function openemail()
+  {
+      window.open('emailcode', '_blank');
+  }
+
+</script>
+
+
+{% endblock %}
+
+
