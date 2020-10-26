@@ -18,6 +18,7 @@ router.get( '/signincreateaccountstart', function (req, res)
 })
 
 
+//  SIGN IN PAGE
 router.post( '/submitsignin', function (req, res)
 {
     console.log("EMAIL UP FRONT 1st:" + req.session.data['email']);
@@ -64,6 +65,7 @@ router.post( '/submitsignin', function (req, res)
     }
     else
     {
+        // As there are no errors then reset data for the verification page
         req.session.data['errorsignin'] = false;
         req.session.data['erroremail'] = false;
         req.session.data['errorpassword'] = false;
@@ -76,6 +78,7 @@ router.post( '/submitsignin', function (req, res)
 })
 
 
+//  VERIFICATION PAGE
 router.post( '/submitverificationcode', function (req, res)
 {
     if(req.session.data['code'] == '12345678' )
@@ -103,7 +106,119 @@ router.post( '/submitverificationcode', function (req, res)
 })
 
 
+// For the timeout of verification code the next page must be to start over with sign in
 router.post( '/failedverification', function (req, res)
 {
     res.redirect('/signin');
+})
+
+
+
+// GO TO CREATE ACCOUNT
+router.get( '/gotocreateaccount', function (req, res)
+{
+    res.redirect('/createaccountsignin?erroroncreateaccount=false&errorfirstname=false&errorlastname=false&erroremailaddress=false&firstname=&lastname=&emailaddress=&');
+})
+
+// Create account - ALL errors
+router.get( '/gotocreateaccountallerrors', function (req, res)
+{
+    res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=true&errorlastname=true&erroremailaddress=true&');
+})
+
+
+// Create account - First name error
+router.get( '/gotocreateaccountfirstnameerror', function (req, res)
+{
+    res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=true&errorlastname=false&erroremailaddress=false&lastname=test&emailaddress=test@test.co.uk&');
+})
+
+
+// Create account - Last name error
+router.get( '/gotocreateaccountlastnameerror', function (req, res)
+{
+    res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=false&errorlastname=true&erroremailaddress=false&firstname=test&emailaddress=test@test.co.uk&');
+})
+
+
+// Create account - Email address error
+router.get( '/gotocreateaccountemailaddresserror', function (req, res)
+{
+    res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=false&errorlastname=false&erroremailaddress=true&firstname=test&lastname=test&emailaddress=test.co.uk&');
+})
+
+
+
+// CREATE ACOUNT SUMIT PAGE
+router.post( '/createaccount', function (req, res)
+{
+    var firstnameerror = false;
+    var lastnameerror = false;
+    var emailerror = false;
+
+    console.log("DATA:" + req.session.data);
+    console.log("\nFIRST NAME:" + req.session.data['firstname']);
+    console.log("LAST NAME:" + req.session.data['lastname']);
+    console.log("EMAIL:" + req.session.data['emailaddress'] + "\n\n");
+
+    var tempemail =  req.session.data['emailaddress'];
+
+    // Check first name is not empty
+    if( req.session.data['firstname'] == '' )
+    {
+        firstnameerror = true;
+    }
+
+    // Check last name is not empty
+    if( req.session.data['lastname'] == '' )
+    {
+        lastnameerror = true;
+    }
+
+    // Check email contains correct symbols
+    if( tempemail.includes("@") == false )
+    {
+        emailerror = true;
+    }
+
+
+    if(firstnameerror && lastnameerror && emailerror)
+    {
+        res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=true&errorlastname=true&erroremailaddress=true&');
+    }
+    else if(firstnameerror && lastnameerror)
+    {
+        res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=true&errorlastname=true&erroremailaddress=false&');
+    }
+    else if(lastnameerror && emailerror)
+    {
+        res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=false&errorlastname=true&erroremailaddress=true&');
+    }
+    else if(firstnameerror && emailerror)
+    {
+        res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=true&errorlastname=false&erroremailaddress=true&');
+    }
+    else if(firstnameerror)
+    {
+        res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=true&errorlastname=false&erroremailaddress=false&');
+    }
+    else if(lastnameerror)
+    {
+        res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=false&errorlastname=true&erroremailaddress=false&');
+    }
+    else if(emailerror)
+    {
+        res.redirect('/createaccountsignin?erroroncreateaccount=true&errorfirstname=false&errorlastname=false&erroremailaddress=true&');
+    }
+    else
+    {
+        // As there are no errors then reset data for the verification page
+        req.session.data['erroroncreateaccount'] = false;
+        req.session.data['errorfirstname'] = false;
+        req.session.data['errorlastname'] = false;
+        req.session.data['erroremailaddress'] = false;
+
+        res.redirect('/checkemailcreateaccount');
+    }
+
 })
