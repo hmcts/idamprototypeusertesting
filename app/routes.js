@@ -71,6 +71,7 @@ router.post( '/submitsignin', function (req, res)
         req.session.data['errorpassword'] = false;
         req.session.data['errorcounter'] = '0';
         req.session.data['code'] = '';
+        req.session.data['errorcode'] = 'false';
 
         res.redirect('/verification?');
     }
