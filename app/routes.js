@@ -82,7 +82,7 @@ router.post( '/submitsignin', function (req, res)
 //  VERIFICATION PAGE
 router.post( '/submitverificationcode', function (req, res)
 {
-    if(req.session.data['code'] == '12345678' )
+    if(req.session.data['code'] == '94674094' )
     {
         req.session.data['errorcounter'] == '0';
         res.redirect('/failedverification?errorcode=false&');
