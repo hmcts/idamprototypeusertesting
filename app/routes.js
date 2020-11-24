@@ -242,16 +242,16 @@ router.post( '/createpasswordchecker', function (req, res)
     {
         passworderror = true;
     }
-    console.log("HW passswod error :" + passworderror + "\n\n");
-    console.log("HW Password is  :" + passwordone + "\n\n");
-    console.log("HW LONG :" + passwordone.length + "\n\n");
+    //console.log("HW passswod error :" + passworderror + "\n\n");
+    //console.log("HW Password is  :" + passwordone + "\n\n");
+    //console.log("HW LONG :" + passwordone.length + "\n\n");
 
     if( passwordone.length < 8  )
     {
         passworderror = true;
     }
 
-    console.log("HW passswod error :" + passworderror + "\n\n");
+    //console.log("HW passswod error :" + passworderror + "\n\n");
     // Check email contains correct symbols
     //if( tempemail.includes("@") == false )
     //{
