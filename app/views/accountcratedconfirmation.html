@@ -1,0 +1,50 @@
+{% extends "layoutnewfooter.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <h1 class="govuk-heading-l" style="">
+          Account created
+      </h1>
+
+      <p class="govuk-body">You can now sign in to your account.</p>
+
+
+
+      <!-- <p>Check your spam folder if you can’t find the email.</p>  -->
+
+      <form
+            action="signincreateaccountstart"
+            name="aspnetForm"
+            method="post"
+            id="aspnetForm"
+            autocomplete="off">
+
+            <div class="govuk-form-group">
+
+                <button class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+                  Continue
+                </button>
+
+            </div>
+      </form>
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+{% endblock %}

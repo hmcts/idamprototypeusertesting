@@ -15,32 +15,37 @@ GOV.UK Prototype Kit
 
     <h2 class="govuk-heading-m">Sign in</h2>
     <p><a href="signinstart" target="_blank" >Sign in</a></p>
-    <p><a href="signincreateaccountstart" target="_blank" >Sign in or create account</a></p>
-    <p><a href="signincreateaccount?errorsignin=true&erroremail=true&errorpassword=true&" target="_blank" >Error: Sign in - wrong or empty email and password</a>
-    <br><a href="signincreateaccount?errorsignin=true&erroremail=true&errorpassword=false&" target="_blank" >Error: Sign in - wrong or empty email only</a>
-    <br><a href="signincreateaccount?errorsignin=true&erroremail=false&errorpassword=true&" target="_blank" >Error: Sign in - wrong or empty password only</a></p>
+    <p><a href="signincreateaccountstart" target="_blank" >Sign in or create account</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="signincreateaccount?errorsignin=true&erroremail=true&errorpassword=true&" target="_blank" >Error: Sign in - wrong or empty email and password</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="signincreateaccount?errorsignin=true&erroremail=true&errorpassword=false&" target="_blank" >Error: Sign in - wrong or empty email only</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="signincreateaccount?errorsignin=true&erroremail=false&errorpassword=true&" target="_blank" >Error: Sign in - wrong or empty password only</a></p>
 
     <br>
     <h2 class="govuk-heading-m">Multi-factor authentication</h2>
-    <p><a href="verification?errorcode=false&errorcounter=0&" target="_blank" >Enter security code</a></p>
+    <p><a href="verification?errorcode=false&errorcounter=0&" target="_blank" >Enter security code</a>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="verification?errorcode=true&errorcounter=0&" target="_blank" >Error: Security code - empty or wrong code</a></p>
+
     <p><a href="emailcode" target="_blank" >Email - Verification code</a></p>
-    <p><a href="verification?errorcode=true&errorcounter=0&" target="_blank" >Error: Security code - empty or wrong code</a></p>
+
     <p><a href="failedverification?" target="_blank" >Security code - Code timeout or 3 entry limit</a></p>
 
     <br>
     <h2 class="govuk-heading-m">Create account</h2>
-    <p><a href="gotocreateaccount" target="_blank" >Create account or sign in</a></p>
-    <p><a href="gotocreateaccountallerrors" target="_blank" >Error: Wrong or empty first name, last name, email address</a>
-    <br><a href="gotocreateaccountfirstnameerror" target="_blank" >Error: Empty first name only</a>
-    <br><a href="gotocreateaccountlastnameerror" target="_blank" >Error: Empty last name only</a>
-    <br><a href="gotocreateaccountemailaddresserror" target="_blank" >Error: Wrong or empty email address only</a></p>
+    <p><a href="gotocreateaccount" target="_blank" >Create account or sign in</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="gotocreateaccountallerrors" target="_blank" >Error: Wrong or empty first name, last name, email address</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="gotocreateaccountfirstnameerror" target="_blank" >Error: Empty first name only</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="gotocreateaccountlastnameerror" target="_blank" >Error: Empty last name only</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="gotocreateaccountemailaddresserror" target="_blank" >Error: Wrong or empty email address only</a></p>
 
     <p><a href="checkemailcreateaccount?emailaddress=abc@123.net&" target="_blank" >Check your emails</a></p>
 
     <p><a href="emailconfirmemailaddress" target="_blank" >Email - Confirm email address</a></p>
 
+    <p><a href="createpassword" target="_blank" >Create password</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="createpassword?errorpasswordfailscriteria=true&" target="_blank" >Error: Invalid password</a>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="gotocreateaccountfirstnameerror" target="_blank" >Error: Passwords don't match</a></p>
 
-
+    <p><a href="accountcratedconfirmation" target="_blank" >Account created confirmation</a></p>
 
   </div>
 </div>

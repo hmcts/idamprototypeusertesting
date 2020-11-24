@@ -223,3 +223,73 @@ router.post( '/createaccount', function (req, res)
     }
 
 })
+
+
+
+
+// submit new password
+router.post( '/createpasswordchecker', function (req, res)
+{
+    var passworderror = false;
+    var differentpssworderror = false;
+
+    var passwordone =  req.session.data['password1'];
+    var passwordtwo =  req.session.data['password2'];
+
+
+    // Check first name is not empty
+    if( passwordone == '' )
+    {
+        passworderror = true;
+    }
+    console.log("HW passswod error :" + passworderror + "\n\n");
+    console.log("HW Password is  :" + passwordone + "\n\n");
+    console.log("HW LONG :" + passwordone.length + "\n\n");
+
+    if( passwordone.length < 8  )
+    {
+        passworderror = true;
+    }
+
+    console.log("HW passswod error :" + passworderror + "\n\n");
+    // Check email contains correct symbols
+    //if( tempemail.includes("@") == false )
+    //{
+     //   emailerror = true;
+    // }
+
+
+    // Check last name is not empty
+    if( req.session.data['password1'] != req.session.data['password2'] )
+    {
+        differentpssworderror = true;
+    }
+
+
+    if(passworderror)
+    {
+        res.redirect('/createpassword?errorpasswordfailscriteria=true&errorcofirmpasswordemptyordifferent=false&');
+    }
+
+    if(differentpssworderror)
+    {
+        res.redirect('/createpassword?errorpasswordfailscriteria=false&errorcofirmpasswordemptyordifferent=true&');
+    }
+
+    if(passworderror || differentpssworderror)
+    {
+
+    }
+    else
+    {
+        // As there are no errors then reset data for the verification page
+        req.session.data['errorpasswordfailscriteria'] = false;
+        req.session.data['errorcofirmpasswordemptyordifferent'] = false;
+
+        req.session.data['password1'] = '';
+        req.session.data['password2'] = '';
+
+        res.redirect('/accountcratedconfirmation');
+    }
+
+})
